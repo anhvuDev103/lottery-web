@@ -8,10 +8,10 @@ import Loading from './Loading';
 function App() {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const API = 'https://lottery-api.onrender.com/v1';
+  const API = 'https://api-lottery.vercel.app/v1';
 
   useEffect(() => {
-    const getDate = async () => {
+    const getData = async () => {
       try {
         const res = await axios(API);
         setIsLoading(false);
@@ -21,7 +21,7 @@ function App() {
       }
     };
 
-    getDate().then((data) => setData(data));
+    getData().then((data) => setData(data));
   }, []);
 
   return (

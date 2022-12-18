@@ -22,6 +22,10 @@ function App() {
     };
 
     getData().then((data) => setData(data));
+
+    window.onafterprint = function () {
+      alert('Bố mẹ nhớ chụp ảnh màn hình gửi cho cô nhé!!!');
+    };
   }, []);
 
   return (

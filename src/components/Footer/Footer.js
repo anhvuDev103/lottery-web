@@ -10,10 +10,6 @@ const Footer = ({ data }) => {
     }
   }, [data]);
 
-  useEffect(() => {
-    cols?.length > 0 && cols[5].push('85', '99');
-  }, [cols]);
-
   return (
     <StyledFooter>
       <div className="body">

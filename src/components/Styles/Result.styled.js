@@ -87,6 +87,17 @@ export const StyledBody = styled.div`
   font-family: 'Great Vibes', cursive;
   font-weight: bold;
 
+  .newYear {
+    font-size: 26px;
+    width: 100px;
+    align-self: center;
+    text-align: center;
+    font-weight: 700;
+    position: absolute;
+    top: 10px;
+    left: 100%;
+  }
+
   .top {
     width: 100%;
     height: 20%;
@@ -97,6 +108,9 @@ export const StyledBody = styled.div`
   .top .special {
     font-size: 50px;
     margin-left: 15px;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
 
     .title {
       font-size: 40px;
@@ -198,3 +212,21 @@ export const StyledFooter = styled.div`
     font-family: unset;
   }
 `;
+
+export const StyledButton = styled.button`
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  background-color: #e3b5f2;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  @media print {
+    display: none;
+  }
+`

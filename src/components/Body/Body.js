@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useRef } from 'react';
 import { StyledBody } from '../Styles/Result.styled';
 
-const Body = ({ data }) => {
+const Body = ({ data, isNewYear }) => {
   const lotteryRef = useRef(null);
 
   useEffect(() => {
@@ -22,6 +22,7 @@ const Body = ({ data }) => {
         <div className="special">
           <span className="title">Đặc Biệt:</span>
           <span className="data"></span>
+          {isNewYear && <span className="newYear">Chúc Mừng Năm Mới</span>}
         </div>
       </div>
       <div className="body">

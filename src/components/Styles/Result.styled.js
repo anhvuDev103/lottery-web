@@ -226,6 +226,10 @@ export const StyledButton = styled.button`
   top: 10px;
   right: 10px;
 
+  &+ button {
+    top: 50px;
+  }
+
   @media print {
     display: none;
   }

@@ -30,6 +30,14 @@ function App() {
     };
   }, []);
 
+  // const screenshotTarget = document.body;
+
+  // html2canvas(screenshotTarget).then((canvas) => {
+  //     const base64image = canvas.toDataURL("image/png");
+  //     window.location.href = base64image;
+  //     console.log(base64image)
+  // });
+
   return (
     <>
       {isLoading ? (
@@ -42,6 +50,9 @@ function App() {
       )}
       <StyledButton onClick={() => setIsNewYear(prev => !prev)}>
         Chúc mừng năm mới
+      </StyledButton>
+      <StyledButton onClick={() => window.print()}>
+        In
       </StyledButton>
     </>
   );

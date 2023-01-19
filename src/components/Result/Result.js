@@ -6,7 +6,6 @@ import { StyledBoxWrapper } from '../Styles/Result.styled';
 
 const Result = ({ data, isNewYear }) => {
   const { power, lottery, twoDigitalsNums, date } = data;
-  console.log('re-render')
   return (
     <StyledBoxWrapper>
       <Header data={power} />

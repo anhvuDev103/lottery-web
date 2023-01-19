@@ -7,12 +7,16 @@ import Loading from './Loading';
 
 function App() {
   const [data, setData] = useState({});
+  console.log("App ~ data", data)
   const [isNewYear, setIsNewYear] = useState(false)
   const [isLoading, setIsLoading] = useState(true);
   const API = 'https://api-lottery.vercel.app/v1';
 
-  console.log('re-render')
   useEffect(() => {
+    const currentDate = new Date();
+    const currentHour = currentDate.getHours()
+    const currentMinute = currentDate.getMinutes()
+
     const getData = async () => {
       try {
         const res = await axios(API);
@@ -23,20 +27,31 @@ function App() {
       }
     };
 
-    getData().then((data) => setData(data));
+    if (currentHour === 18 && currentMinute > 30) {
+      getData().then((data) => {
+        setData(data)
+        localStorage.LOTTERY_DATA_APP = JSON.stringify(data)
+      });
+    } else {
+      if (Object.keys(JSON.parse(localStorage.LOTTERY_DATA_APP || "{}")).length === 0) {
+        getData().then((data) => {
+          setData(data)
+          localStorage.LOTTERY_DATA_APP = JSON.stringify(data)
+        });
+      } else {
+        setData(JSON.parse(localStorage?.LOTTERY_DATA_APP) || "{}")
+        setIsLoading(false);
+      }
+    }
 
     window.onafterprint = function () {
       alert('Bố mẹ nhớ chụp ảnh màn hình gửi cho cô nhé!!!');
     };
   }, []);
 
-  // const screenshotTarget = document.body;
-
-  // html2canvas(screenshotTarget).then((canvas) => {
-  //     const base64image = canvas.toDataURL("image/png");
-  //     window.location.href = base64image;
-  //     console.log(base64image)
-  // });
+  useEffect(() => {
+    
+  }, [])
 
   return (
     <>

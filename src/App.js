@@ -41,7 +41,7 @@ function App() {
 
   useEffect(() => {
     window.onafterprint = function () {
-      alert("Bố mẹ nhớ chụp ảnh màn hình gửi cho cô nhé!!!");
+      alert("Bố mẹ nhớ chụp ảnh màn hình gửi cho cô nhé!!!!");
     };
   }, []);
 

@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
-import { useMemo, useRef } from 'react';
-import { StyledFooter } from '../Styles/Result.styled';
+import { useMemo, useRef } from "react";
+import { StyledFooter } from "../Styles/Result.styled";
+import moment from "moment";
+import dateFormat from "../../utils/dateFormat";
 
 const Footer = ({ data }) => {
   const colRef = useRef(null);
@@ -9,6 +10,9 @@ const Footer = ({ data }) => {
       return Object.values(data.twoDigitalsNums);
     }
   }, [data]);
+
+  const date = moment(data.timestamps);
+  const { currentDay, currentLocation } = dateFormat(date.day());
 
   return (
     <StyledFooter>
@@ -33,12 +37,18 @@ const Footer = ({ data }) => {
                     <>
                       <th key={i} className="cols">
                         <ul className="data">
-                          {col.map((item, index) => index < 7 && <li key={index}>{item}</li>)}
+                          {col.map(
+                            (item, index) =>
+                              index < 7 && <li key={index}>{item}</li>
+                          )}
                         </ul>
                       </th>
                       <th key={i + 99} className="cols">
                         <ul className="data">
-                          {col.map((item, index) => index >= 7 && <li key={index}>{item}</li>)}
+                          {col.map(
+                            (item, index) =>
+                              index >= 7 && <li key={index}>{item}</li>
+                          )}
                         </ul>
                       </th>
                     </>
@@ -59,7 +69,11 @@ const Footer = ({ data }) => {
           </tbody>
         </table>
       </div>
-      <div className="bottom">{data?.date}</div>
+      <div className="bottom">
+        {date.format(
+          `[KQXS] [${currentLocation}] - [${currentDay}] [ngày] DD/MM/YYYY`
+        )}
+      </div>
     </StyledFooter>
   );
 };

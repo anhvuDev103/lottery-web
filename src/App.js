@@ -1,57 +1,49 @@
-import axios from 'axios';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import Result from './components/Result';
-import { PaperWrapper, StyledButton } from './components/Styles/Result.styled';
-import Loading from './Loading';
+import { useState, useMemo } from "react";
+import Result from "./components/Result";
+import {
+  PaperWrapper,
+  Button,
+  Actions,
+} from "./components/Styles/Result.styled";
+import Loading from "./Loading";
+import useSWR from "swr";
+import axios from "axios";
+import { useEffect } from "react";
 
 function App() {
-  const [data, setData] = useState({});
-  console.log("App ~ data", data)
-  const [isNewYear, setIsNewYear] = useState(false)
-  const [isLoading, setIsLoading] = useState(true);
-  const API = 'https://api-lottery.vercel.app/v1';
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isNewYear, setIsNewYear] = useState(false);
+  const ENDPOINT_API = "https://api-lottery.vercel.app/v2";
+
+  const { data: response, isLoading } = useSWR(ENDPOINT_API, {
+    fetcher: (url) => axios.get(url).then((res) => res.data),
+  });
+
+  const currentVisible = useMemo(() => {
+    return response ? response[currentIndex] : null;
+  }, [currentIndex, response]);
+
+  const handleDate = (type) => {
+    switch (type) {
+      case "current":
+        setCurrentIndex(0);
+        break;
+      case "prev":
+        setCurrentIndex((prev) => (prev === 8 ? 8 : prev + 1));
+        break;
+      case "next":
+        setCurrentIndex((prev) => (prev === 0 ? 0 : prev - 1));
+        break;
+      default:
+        break;
+    }
+  };
 
   useEffect(() => {
-    const currentDate = new Date();
-    const currentHour = currentDate.getHours()
-    const currentMinute = currentDate.getMinutes()
-
-    const getData = async () => {
-      try {
-        const res = await axios(API);
-        setIsLoading(false);
-        return res.data;
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    if (currentHour === 18 && currentMinute > 30) {
-      getData().then((data) => {
-        setData(data)
-        localStorage.LOTTERY_DATA_APP = JSON.stringify(data)
-      });
-    } else {
-      if (Object.keys(JSON.parse(localStorage.LOTTERY_DATA_APP || "{}")).length === 0) {
-        getData().then((data) => {
-          setData(data)
-          localStorage.LOTTERY_DATA_APP = JSON.stringify(data)
-        });
-      } else {
-        setData(JSON.parse(localStorage?.LOTTERY_DATA_APP) || "{}")
-        setIsLoading(false);
-      }
-    }
-
     window.onafterprint = function () {
-      alert('Bố mẹ nhớ chụp ảnh màn hình gửi cho cô nhé!!!');
+      alert("Bố mẹ nhớ chụp ảnh màn hình gửi cho cô nhé!!!");
     };
   }, []);
-
-  useEffect(() => {
-    
-  }, [])
 
   return (
     <>
@@ -59,16 +51,37 @@ function App() {
         <Loading />
       ) : (
         <PaperWrapper>
-          <Result isNewYear={isNewYear} data={data} />
-          <Result isNewYear={isNewYear} data={data} />
+          <Result isNewYear={isNewYear} state={currentVisible} />
+          <Result isNewYear={isNewYear} state={currentVisible} />
         </PaperWrapper>
       )}
-      <StyledButton onClick={() => setIsNewYear(prev => !prev)}>
-        Chúc mừng năm mới
-      </StyledButton>
-      <StyledButton onClick={() => window.print()}>
-        In
-      </StyledButton>
+      <Actions>
+        <Button role="new-year" onClick={() => setIsNewYear((prev) => !prev)}>
+          Chúc mừng năm mới
+        </Button>
+        <Button role="print" onClick={() => window.print()}>
+          In
+        </Button>
+        <Button
+          role="date"
+          id="prev"
+          onClick={() => handleDate("prev")}
+          disabled={currentIndex === 8}
+        >
+          Ngày trước
+        </Button>
+        <Button
+          role="date"
+          id="next"
+          onClick={() => handleDate("next")}
+          disabled={currentIndex === 0}
+        >
+          Ngày sau
+        </Button>
+        <Button role="date" id="current" onClick={() => handleDate("current")}>
+          Hiện tại
+        </Button>
+      </Actions>
     </>
   );
 }

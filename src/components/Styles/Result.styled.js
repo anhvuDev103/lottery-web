@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
 const rotate = keyframes`
   to {
@@ -9,8 +9,6 @@ const rotate = keyframes`
 export const StyledOverlay = styled.div`
   width: 100%;
   height: 100%;
-
-  position: relative;
 
   > div {
     width: 40px;
@@ -57,7 +55,7 @@ export const StyledHeader = styled.div`
   }
 
   .bottom {
-    font-family: 'Great Vibes', cursive;
+    font-family: "Great Vibes", cursive;
     font-weight: bold;
     font-size: 22px;
     display: flex;
@@ -84,7 +82,7 @@ export const StyledHeader = styled.div`
 export const StyledBody = styled.div`
   width: 100%;
   height: 60%;
-  font-family: 'Great Vibes', cursive;
+  font-family: "Great Vibes", cursive;
   font-weight: bold;
 
   .newYear {
@@ -192,14 +190,14 @@ export const StyledFooter = styled.div`
 
   .title-table {
     width: 12%;
-    font-family: 'Great Vibes', cursive;
+    font-family: "Great Vibes", cursive;
     transform: translateY(2px);
   }
 
   .bottom {
     width: 100%;
     height: 25%;
-    font-family: 'Andada Pro', serif;
+    font-family: "Andada Pro", serif;
     font-weight: 800;
     font-size: 20px;
     text-align: center;
@@ -213,24 +211,45 @@ export const StyledFooter = styled.div`
   }
 `;
 
-export const StyledButton = styled.button`
+export const Button = styled.button`
   padding: 10px 20px;
   border-radius: 12px;
   font-weight: 700;
-  background-color: #e3b5f2;
+  background-color: #4b78cd;
+  color: white;
   border: none;
   outline: none;
   cursor: pointer;
+  margin-top: 16px;
 
-  position: absolute;
-  top: 10px;
-  right: 10px;
-
-  &+ button {
-    top: 50px;
+  &[role="new-year"],
+  &[role="print"],
+  &#current {
+    grid-column: 1/3;
+    margin-top: 0;
   }
+
+  &[role="date"] {
+    background-color: #ff9934;
+    color: white;
+  }
+
+  &:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+`;
+
+export const Actions = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  padding: 8px;
 
   @media print {
     display: none;
   }
-`
+`;

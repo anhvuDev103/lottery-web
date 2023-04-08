@@ -222,9 +222,19 @@ export const Button = styled.button`
   cursor: pointer;
   margin-top: 16px;
 
+  &:has(a) {
+    margin-top: 16px !important;
+    background-color: #1ed760;
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
+
   &[role="new-year"],
   &[role="print"],
-  &#current {
+  &#current,
+  &:has(a) {
     grid-column: 1/3;
     margin-top: 0;
   }

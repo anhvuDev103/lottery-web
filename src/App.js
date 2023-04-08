@@ -81,6 +81,15 @@ function App() {
         <Button role="date" id="current" onClick={() => handleDate("current")}>
           Hiện tại
         </Button>
+        <Button>
+          <a
+            href="https://kqxs-react.vercel.app/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Tới phiên bản 1
+          </a>
+        </Button>
       </Actions>
     </>
   );

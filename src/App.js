@@ -4,6 +4,7 @@ import {
   PaperWrapper,
   Button,
   Actions,
+  NoItemFound,
 } from "./components/Styles/Result.styled";
 import Loading from "./Loading";
 import useSWR from "swr";
@@ -51,8 +52,14 @@ function App() {
         <Loading />
       ) : (
         <PaperWrapper>
-          <Result isNewYear={isNewYear} state={currentVisible} />
-          <Result isNewYear={isNewYear} state={currentVisible} />
+          {currentVisible ? (
+            <>
+              <Result isNewYear={isNewYear} state={currentVisible} />
+              <Result isNewYear={isNewYear} state={currentVisible} />
+            </>
+          ) : (
+            <NoItemFound>Chưa có data, vui lòng thử lại sau 6h30</NoItemFound>
+          )}
         </PaperWrapper>
       )}
       <Actions>

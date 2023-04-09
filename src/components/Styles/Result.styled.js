@@ -263,3 +263,12 @@ export const Actions = styled.div`
     display: none;
   }
 `;
+
+export const NoItemFound = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Andada Pro", serif;
+  font-weight: 800;
+  font-size: 20px;
+`;

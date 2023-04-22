@@ -272,3 +272,51 @@ export const NoItemFound = styled.div`
   font-weight: 800;
   font-size: 20px;
 `;
+
+export const Modal = styled.div`
+  padding: 24px;
+  border-radius: 24px;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 312px;
+
+  .heading {
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 24px;
+    font-family: "Andada Pro", serif;
+  }
+
+  input {
+    width: 100%;
+    border: 1px solid #0000001a;
+    height: 50px;
+    padding: 10px 16px;
+    outline: none;
+    border-radius: 8px;
+    color: orange;
+    font-size: 24px;
+  }
+
+  button {
+    height: 40px;
+    width: 100%;
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    background-color: #c66556;
+    margin-top: 16px;
+  }
+`;

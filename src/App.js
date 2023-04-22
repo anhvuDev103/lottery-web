@@ -1,17 +1,46 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import Result from "./components/Result";
 import {
   PaperWrapper,
   Button,
   Actions,
   NoItemFound,
+  Modal,
 } from "./components/Styles/Result.styled";
 import Loading from "./Loading";
 import useSWR from "swr";
 import axios from "axios";
 import { useEffect } from "react";
+import useModal from "./hooks/useModal";
+import moment from "moment";
+import { getCookie } from "./utils/cookies";
+
+const MILISECOND_A_MONTH = 30 * 24 * 60 * 60 * 1000;
+
+function LoginModal({ handleDismiss }) {
+  const inputRef = useRef(null);
+  const expiresUNIX = Math.round(+moment()) + MILISECOND_A_MONTH;
+
+  const handleClick = () => {
+    if (inputRef.current.value === "71790305") {
+      handleDismiss();
+      document.cookie = `IS_EXPIRED=${true}; expires=${moment(
+        expiresUNIX
+      ).format()}; path=/`;
+    }
+  };
+
+  return (
+    <Modal>
+      <div className="heading">Type the code</div>
+      <input ref={inputRef} />
+      <button onClick={handleClick}>OK</button>
+    </Modal>
+  );
+}
 
 function App() {
+  const [visible] = useModal(<LoginModal />);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isNewYear, setIsNewYear] = useState(false);
   const ENDPOINT_API = "https://api-lottery.vercel.app/v2";
@@ -39,6 +68,12 @@ function App() {
         break;
     }
   };
+
+  useEffect(() => {
+    if (!getCookie("IS_EXPIRED")) {
+      visible();
+    }
+  }, [visible]);
 
   useEffect(() => {
     window.onafterprint = function () {

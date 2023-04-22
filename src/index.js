@@ -1,13 +1,14 @@
-import React, { Fragment } from 'react';
-import ReactDOM from 'react-dom/client';
+import React, { Fragment } from "react";
+import ReactDOM from "react-dom/client";
 
-import App from './App';
-import GlobalStyle from './components/Styles/GlobalsStyle';
+import App from "./App";
+import GlobalStyle from "./components/Styles/GlobalsStyle";
+import Provider from "./contexts/Modal";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Fragment>
+  <Provider>
     <App />
     <GlobalStyle />
-  </Fragment>
+  </Provider>
 );

@@ -12,21 +12,15 @@ import useSWR from "swr";
 import axios from "axios";
 import { useEffect } from "react";
 import useModal from "./hooks/useModal";
-import moment from "moment";
-import { getCookie } from "./utils/cookies";
-
-const MILISECOND_A_MONTH = 30 * 24 * 60 * 60 * 1000;
+import { getCookie, setCookie } from "./utils/cookies";
 
 function LoginModal({ handleDismiss }) {
   const inputRef = useRef(null);
-  const expiresUNIX = Math.round(+moment()) + MILISECOND_A_MONTH;
 
   const handleClick = () => {
     if (inputRef.current.value === "71790305") {
       handleDismiss();
-      document.cookie = `IS_EXPIRED=${true}; expires=${moment(
-        expiresUNIX
-      ).format()}; path=/`;
+      setCookie("IS_EXPIRED", true, 30);
     }
   };
 

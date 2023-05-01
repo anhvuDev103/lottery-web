@@ -64,7 +64,7 @@ function App() {
   };
 
   useEffect(() => {
-    if (!JSON.parse(getCookie('IS_EXPIRED'))) {
+    if (!getCookie('IS_EXPIRED')) {
       visible();
     }
   }, [visible]);

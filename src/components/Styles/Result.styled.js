@@ -52,6 +52,7 @@ export const StyledHeader = styled.div`
   .top {
     font-size: 15px;
     text-align: center;
+    font-family: "EB Garamond", serif;
   }
 
   .bottom {
@@ -180,6 +181,7 @@ export const StyledFooter = styled.div`
   .first-cols {
     vertical-align: top;
     font-size: 20px;
+    font-family: "EB Garamond", serif;
   }
 
   th.cols {

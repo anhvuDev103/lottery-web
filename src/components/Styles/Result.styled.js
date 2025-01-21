@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
 const rotate = keyframes`
   to {
@@ -54,10 +54,11 @@ export const StyledHeader = styled.div`
   .top {
     font-size: 15px;
     text-align: center;
+    font-family: "EB Garamond", serif;
   }
 
   .bottom {
-    font-family: 'Great Vibes', cursive;
+    font-family: "Great Vibes", cursive;
     font-weight: bold;
     font-size: 22px;
     display: flex;
@@ -84,7 +85,7 @@ export const StyledHeader = styled.div`
 export const StyledBody = styled.div`
   width: 100%;
   height: 60%;
-  font-family: 'Great Vibes', cursive;
+  font-family: "Great Vibes", cursive;
   font-weight: bold;
 
   .newYear {
@@ -182,6 +183,7 @@ export const StyledFooter = styled.div`
   .first-cols {
     vertical-align: top;
     font-size: 20px;
+    font-family: "EB Garamond", serif;
   }
 
   th.cols {
@@ -192,14 +194,14 @@ export const StyledFooter = styled.div`
 
   .title-table {
     width: 12%;
-    font-family: 'Great Vibes', cursive;
+    font-family: "Great Vibes", cursive;
     transform: translateY(2px);
   }
 
   .bottom {
     width: 100%;
     height: 25%;
-    font-family: 'Andada Pro', serif;
+    font-family: "Andada Pro", serif;
     font-weight: 800;
     font-size: 20px;
     text-align: center;
@@ -226,11 +228,11 @@ export const StyledButton = styled.button`
   top: 10px;
   right: 10px;
 
-  &+ button {
+  & + button {
     top: 50px;
   }
 
   @media print {
     display: none;
   }
-`
+`;

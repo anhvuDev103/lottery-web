@@ -50,6 +50,7 @@ export const StyledHeader = styled.div`
   border-bottom: 2px dashed black;
 
   .top {
+    font-weight: 500;
     font-size: 15px;
     text-align: center;
     font-family: "EB Garamond", serif;

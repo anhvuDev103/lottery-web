@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .data {
-    font-family: arial;
+    font-family: 'Arial';
     font-size: 35px;
   }
 

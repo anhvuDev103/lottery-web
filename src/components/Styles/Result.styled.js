@@ -148,7 +148,7 @@ export const StyledBody = styled.div`
   }
 
   .space {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Arial";
     font-size: 40px;
     transform: translateY(-3px);
   }
